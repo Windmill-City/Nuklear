@@ -4106,6 +4106,7 @@ enum nk_text_edit_mode {
 };
 
 struct nk_text_edit {
+    struct nk_vec2 preedit_pos;
     struct nk_clipboard clip;
     struct nk_str string;
     nk_plugin_filter filter;

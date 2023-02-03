@@ -609,6 +609,10 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
                 cursor.y = area.y + cursor_pos.y + row_height/2.0f - cursor.h/2.0f;
                 cursor.y -= edit->scrollbar.y;
                 nk_fill_rect(out, cursor, 0, cursor_color);
+
+                // PreEdit Pos
+                edit->preedit_pos.x = cursor.x;
+                edit->preedit_pos.y = cursor.y;
             } else {
                 /* draw cursor inside text */
                 int glyph_len;
@@ -629,6 +633,10 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
                 txt.text = cursor_text_color;
                 nk_fill_rect(out, label, 0, cursor_color);
                 nk_widget_text(out, label, cursor_ptr, glyph_len, &txt, NK_TEXT_LEFT, font);
+
+                // PreEdit Pos
+                edit->preedit_pos.x = label.x;
+                edit->preedit_pos.y = label.y;
             }
         }}
     } else {
